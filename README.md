@@ -58,7 +58,7 @@ Finally, due to this design, the front-end application could be scaled properly 
 
 
 ## Run the app in prod mode (as Docker container)
-1. **IMPORTANT:** Make sure that you have installed and run the digsup-server application:
+1. **IMPORTANT:** Make sure that you have installed the digsup-server and it is up and running:
 
 2. Go to project's dist folder:
 
