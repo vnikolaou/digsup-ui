@@ -65,7 +65,7 @@ class SignupForm extends Component {
 
         let message = {};
         if(Object.keys(errors).length == 0) {    
-            const result = await SignupService.submitEmail();
+            const result = await SignupService.submitEmail(this.state.email);
             console.log('Submission result=' + result);
 
             message = {

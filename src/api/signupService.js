@@ -11,11 +11,7 @@ class SignupService {
      * @param {*} email the given email
      */
     async submitEmail(email) {
-        console.log('--- inside submitEmail ---');
-        const result = await httpService.postData('/api/signup', { email }); 
-        console.log(result);
-        console.log('--- end submitEmail ---');
-        return result;   
+        return await httpService.postData('http://127.0.0.1:8081/api/signup/', { 'email': email });    
     }
 }
 
