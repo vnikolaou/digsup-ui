@@ -2,10 +2,13 @@
 
 ## Install locally
 1. Clone from repo:
-    git clone 
+
+    ```git clone https://github.com/vnikolaou/digsup-ui.git``` 
 2. Go to project's root folder:
+
     ```cd digsup-ui```
 3. Run:  
+
     ```yarn install``` 
 
 ## Start the app in dev mode
