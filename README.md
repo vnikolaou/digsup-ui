@@ -18,7 +18,7 @@ Practically the application runs inside a docker container as a set of static pa
 The design sets the basis for the communication with the back-end to rely on Nginx's proxy capabilities, ie. allows to talk with another service or container in a seperate process. In this scenarion, the IP address of the back-end server in a production environment would be the IP of an internal load balancer which would delegate all the requests to one or more instances of the back-end application (REST APIs) inside the cluster. 
 At the moment the front-end access directly the back-end server via HTTP for reasons that have to do with the networking capabilities of the individual docker containers. Such issues would be handled normally by a tool like Kubernetes.
 
-Finally, due to this design, the front-end application can be scaled properly (eg. with Kubernettes) and in combination with the back-end instances would compose a functional cluster offering high availability, resiliance, failover and other valuable QoS capabilities.
+Finally, due to this design, the front-end application could be scaled properly (eg. with Kubernettes) and in combination with the back-end instances would compose a functional cluster offering high availability, resiliance, failover and other valuable QoS capabilities.
 
 ## Install locally
 1. Clone from repo:
