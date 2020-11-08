@@ -1,19 +1,21 @@
 'use strict';
 
+import httpService from './httpService';
+
 /**
  * This service handles the communication with the server.
  */
 class SignupService {
-    constructor() {
-        console.log('Creating new SignupService instance !!');
-    }
-
     /**
      * Submits the email to the server
      * @param {*} email the given email
      */
-    submitEmail(email) {
-        return (Math.floor(Math.random() * 6)) % 2; 
+    async submitEmail(email) {
+        console.log('--- inside submitEmail ---');
+        const result = await httpService.postData('/api/signup', { email }); 
+        console.log(result);
+        console.log('--- end submitEmail ---');
+        return result;   
     }
 }
 

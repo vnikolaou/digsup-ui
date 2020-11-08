@@ -30,8 +30,11 @@ class SignupForm extends Component {
     validateFields() {
         const errors = {};
         if(!this.state.email) {
-            errors['email'] = 'Please provide a valid email address.';
-        } 
+            errors['email'] = 'Please type an email address.';
+        } else if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+            .test(this.state.email)) {
+            errors['email'] = 'Please provide only a valid email address.';
+        }
 
         return errors;      
     }
@@ -55,14 +58,14 @@ class SignupForm extends Component {
      * It performs validations and submits the email to the server.
      * @param {*} event the event
      */
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         
         const errors = this.validateFields();
 
         let message = {};
         if(Object.keys(errors).length == 0) {    
-            const result = SignupService.submitEmail();
+            const result = await SignupService.submitEmail();
             console.log('Submission result=' + result);
 
             message = {
