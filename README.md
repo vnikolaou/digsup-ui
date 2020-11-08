@@ -1,11 +1,12 @@
 # DigsUp-UI
 
 ## Install locally
-1. Clone from repo
+1. Clone from repo:
+    git clone 
 2. Go to project's root folder:
-    cd <root_folder>
+    ```cd digsup-ui```
 3. Run:  
-    yarn install 
+    ```yarn install``` 
 
 ## Start the app in dev mode
 1. Go to project's root folder:
