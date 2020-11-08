@@ -66,12 +66,10 @@ class SignupForm extends Component {
         let message = {};
         if(Object.keys(errors).length == 0) {    
             const result = await SignupService.submitEmail(this.state.email);
-            console.log('Submission result=' + result);
 
             message = {
-                text: result ? 'Your email was sent successfully !!': 
-                    'There was a server error. Please try again.',
-                error: result? false: true
+                text: result.message,
+                error: result.status == 200? false: true
             }
         } 
 

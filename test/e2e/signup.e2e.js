@@ -4,6 +4,7 @@ jest.mock('api/signupService');
 
 import signupService from 'api/signupService';
 import puppeteer from 'puppeteer';
+import faker from 'faker';
 
 let browser;
 let page;
@@ -57,25 +58,22 @@ describe('Signup form assures that', () => {
     expect(invalidEmailError).toBe('Please provide only a valid email address.');
   }, 1600000);
 
-  test('submittion returns error message', async () => {
+  test('submittion returns proper message', async () => {
     const res = await signupService.submitEmail.mockResolvedValue({ status: 400, message: 'Wrong input' });
 
     const input = await page.$('input[name=email]');
     await input.click({ clickCount: 5 }); // selects the current text
 
-    await page.type('input[name=email]', 'vnikolaou@gmail.com');
+    const email = faker.internet.email();
+    await page.type('input[name=email]', email);
     await page.click('button[type=submit]');
-    const serverError = await page.$eval('div.error', e => e.innerHTML);
-    expect(serverError).toBe('There was a server error. Please try again.');
-  }, 1600000); 
-  
-  test('submittion returns success message', async () => {
-    const res = await signupService.submitEmail.mockResolvedValue({ status: 200, message: 'Done!' });
+    const serverSuccess = await page.$eval('div.message div.success', e => e.innerHTML);
+    expect(serverSuccess).toBe('The email was registered&nbsp;');
 
     await page.click('button[type=submit]');
-    const serverSuccess = await page.$eval('div.error', e => e.innerHTML);
-    expect(serverSuccess).toBe('Your email was sent successfully !!');
-  }, 1600000);   
+    const serverError = await page.$eval('div.message div.error', e => e.innerHTML);
+    expect(serverError).toBe('The email has already been registered&nbsp;');
+  }, 1600000); 
 });
 
 afterAll(() => {
