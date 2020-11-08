@@ -58,16 +58,18 @@ Finally, due to this design, the front-end application could be scaled properly 
 
 
 ## Run the app in prod mode (as Docker container)
-1. Go to project's dist folder:
+1. Make sure that you have installed and run the digsup-server application:
+
+2. Go to project's dist folder:
 
     ```cd digsup-ui```
-2. Build the image:
+3. Build the image:
 
     ```sudo docker build --rm -f Dockerfile -t digsup-ui:latest .```
-3. Run a container from the new image:
+4. Run a container from the new image:
 
     ```sudo docker run --rm -d -p 8080:80 digsup-ui:latest```
-3. Open a browser and visit the address:
+5. Open a browser and visit the address:
     ```http://localhost:8080```
     
     
