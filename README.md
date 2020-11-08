@@ -13,13 +13,12 @@ It uses the following tools:
 - Nginx (v1.15.x)
 
 The application implements ONLY the front-end based on React.js framework. I chose to separate the front-end from back-end for scaling purposes in the future.
-Practically the application runs inside a docker container as a set of static pages (the result of building the React files) inside an Nginx server in port 8080.
+Practically the application runs inside a docker container as a set of static pages (the result of building the React files) inside a Nginx server in port 8080.
 
-The communication with the back-end relies on Nginx's proxy capabilities. From the pages perspective any access to the back-end still targets specific URLs inside the code, but these URLs are relative to the current context path. All these requests pass through the Nginx which takes care to forward the requests to a hardcoded <ip>:<port> scheme that target the back end application. 
-    
-Practically the IP address of the back-end server in a production environment would be the IP of an internal load balancer which would delegate all the requests to one or more instances of the back-end application (REST APIs) inside the cluster. These instances are docker containers as well.
+The design sets the basis for the communication with the back-end to rely on Nginx's proxy capabilities, ie. allows to talk with another service or container in a seperate process. In this scenarion, the IP address of the back-end server in a production environment would be the IP of an internal load balancer which would delegate all the requests to one or more instances of the back-end application (REST APIs) inside the cluster. 
+At the moment the front-end access directly the back-end server via HTTP for reasons that have to do with the networking capabilities of the individual docker containers. Such issues would be handled normally by a tool like Kubernetes.
 
-Similarly, the front-end application can be scaled properly (eg. with Kubernettes) and in combination with the back-end instances would compose a functional cluster offering high availability, resiliance, failover and other valuable QoS capabilities.
+Finally, due to this design, the front-end application can be scaled properly (eg. with Kubernettes) and in combination with the back-end instances would compose a functional cluster offering high availability, resiliance, failover and other valuable QoS capabilities.
 
 ## Install locally
 1. Clone from repo:
