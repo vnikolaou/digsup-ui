@@ -68,7 +68,7 @@ Finally, due to this design, the front-end application could be scaled properly 
     ```sudo docker build --rm -f Dockerfile -t digsup-ui:latest .```
 4. Run a container from the new image:
 
-    ```sudo docker run --rm -d -p 8080:80 digsup-ui:latest```
+    ```sudo sudo docker run --rm -d -p 8080:80  --link=backend:backend --net net0 digsup-ui:latest```
 5. Open a browser and visit the address:
     ```http://localhost:8080```
     
