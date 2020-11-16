@@ -11,7 +11,7 @@ class SignupService {
      * @param {*} email the given email
      */
     async submitEmail(email) {
-        return await httpService.postData('http://127.0.0.1:8081/api/signup/', { 'email': email });    
+        return await httpService.postData('/api/signup/', { 'email': email });    
     }
 }
 
